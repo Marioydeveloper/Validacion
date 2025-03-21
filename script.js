@@ -1,4 +1,3 @@
-"editor.fontLigatures" = true;
 const userRegex =    /^(?=.*[a-z])(?=.*[0-9]).{6,10}$/;
 const passwordRegex =    /^(?=.*[a-z])(?=.*[0-9]).{6,16}$/;
 const emailRegex =       /^\S+@\S+\.\S+$/;
@@ -27,8 +26,7 @@ let countriesValidation = false;
 //Funcion
 
 const validacion = (e, validacion, element) =>{ //la "e" es el evento
-    const information =e.target.parentElement.children[1]; //por el "label" en html se sube un numero
-    formbtn.disabled = !usernameValidation || !emailValidation || !phoneValidation || !passwordValidation || !confirmPasswordValidation || !countriesValidation ? true : false;
+ const information =e.target.parentElement.children[1]; //por el "label" en html se sube un numero
 if (validacion) {
     element.classList.add(`correct`)
     element.classList.remove(`incorrect`)
@@ -76,6 +74,7 @@ const optionSelected = [...e.target.children].find(option => option.selected);
 phoneCode.innerHTML = `+${optionSelected.value}`
 countries.classList.add("correct");
 phoneCode.classList.add("correct");
+validation(e,null,null);
 });
 
 phoneInput.addEventListener(`input`, e =>{
@@ -98,8 +97,19 @@ phoneInput.addEventListener(`input`, e =>{
         });
 
     confirmPasswordInput.addEventListener(`input`, e =>{
-     confirmPasswordValidation = passwordInput.value  === e.target.value;
+    confirmPasswordValidation = passwordInput.value  === e.target.value;
     validacion(e, confirmPasswordValidation, confirmPasswordInput);
         });
 
-form.addEventListener("submit"), e 
+form.addEventListener("submit", e => {
+    e,preventdefault();
+    const user = {
+        username : usernameInput.value,
+        email : emailInput.value,
+        phone : phoneInput.value,
+        password : `${phoneCode.innerHTML} ${passwordInput.value}`,
+        
+    }
+    console.log(user);
+
+})
