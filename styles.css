@@ -30,7 +30,6 @@ body{
 }
 
 
-  
 
 #formTitle{
     color: black;
@@ -100,11 +99,17 @@ select{
     display: block;
 }
 
-#form-btn{
+#form-btn{opacity: 0.5;
     width: 100%;
     background-color: #6f44cb;
     padding: 1rem;
     color: black;
+}
+
+#form-btn:disabled{
+    
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 
